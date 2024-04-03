@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import Search from "./Search";
 import RestaurantCard from "./RestaurantCard";
 import FilterTop from "./FilterTop";
+import { Link } from "react-router-dom";
 
 const RestaurantList = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -23,42 +25,42 @@ const RestaurantList = () => {
      setRestaurantList(restaurantsArray);
      setFilteredRestaurants(restaurantsArray);
   }
+  //console.log(filteredRestaurants);
 
   return restaurantList.length === 0 ? (
     <h1>loading...</h1>
   ) : (
     <>
      <div className="search-top">
-      <FilterTop data={filteredRestaurants}/>
-      <Search/>
+     <div className="button">
+      <button className="btn" onClick={() => {
+        const filteredList = restaurantList.filter((res) => {
+              return res.info.avgRating > 4.3;
+            });
+            setFilteredRestaurants(filteredList);
+      }}>Top Restaurants</button>
+      </div>
+      <div className="search">
+      <input type="text" value = {searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search Your Restaurant"/>
+      <button className="search-btn" onClick={() => {
+            const filteredList = restaurantList.filter((res) => {
+              console.log(res)
+              return res.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
+            });
+            //console.log(res.info.name)
+            setFilteredRestaurants(filteredList);
+            console.log(filteredList)
+          }}>Search</button>
+    </div>
      </div>
      <div className="restaurant-cards">
-      {filteredRestaurants.map((res) => {
-        console.log(res.info);
-        return <RestaurantCard key = {res.info.id} data = {res.info}/>
-      })}
+     {filteredRestaurants.map((res) => (
+        // console.log(res.info.id)
+        <Link key={res.info.id} to={"/restaurants/" + res.info.id}><RestaurantCard resData={res.info} /></Link>
+        ))}
      </div>
     </>
   )
-
-    //  return restaurantList.length === 0 ? (
-    //   <h1>loading...</h1>
-    //  ) : (
-    //   <>
-    //   <div className="filtertop">
-    //     {filteredRestaurants.map((res) => {
-    //       return <FilterTop key={res.info.id} resData={res.info} />;
-    //     })}
-    //   </div>
-    //   <Search />
-    //   <div className="restaurant-list">
-    //     {filteredRestaurants.map((res) => {
-    //       return <RestaurantCard key={res.info.id} resData={res.info} />;
-    //     })}
-    //   </div>
-    //   <h2>this is restaurant</h2>
-    // </>
-    //  )
   }
 
 export default RestaurantList;
