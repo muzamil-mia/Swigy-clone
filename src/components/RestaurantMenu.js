@@ -3,31 +3,21 @@ import { ReactDOM, useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENUAPI } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
   const { resId } = useParams();
-  console.log(resId);
+  //calling the custom hook and passing the resId as parameter
+  const restaurantMenu = useRestaurantMenu(resId);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENUAPI + resId);
-      const json = await data.json();
-      console.log(json);
-      setRestaurantMenu(json);
-    };
     if (restaurantMenu === null) {
       return <Shimmer />;
     }
-    // console.log(restaurantMenu);
     const { itemCards } = restaurantMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
     console.log(itemCards);
-    // if(itemCards.length() == 0) {
-    //   return <Shimmer/>
-    // }
+    if(itemCards.length == 0) {
+      return <Shimmer/>
+    }
 
     return (
       <div className="restaurant-menu">

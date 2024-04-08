@@ -162,6 +162,9 @@ cursor: pointer;
   column-gap: 20px;
   row-gap: 20px;
 }
+.restaurant-cards>a{
+  text-decoration: none;
+}
 
 
 .card{
@@ -220,5 +223,10 @@ cursor: pointer;
   font-weight: 200;
   line-height: 19px;
   margin-top: 5px;
+}
+.about{
+  border: 2px solid;
+  padding: 5px;
+  width: 300px;
 }
 

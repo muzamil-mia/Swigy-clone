@@ -5,36 +5,38 @@ import Search from "./Search";
 import RestaurantCard from "./RestaurantCard";
 import FilterTop from "./FilterTop";
 import { Link } from "react-router-dom";
+import useRestaurantList from "../utils/useRestaurantList";
+import { RESTAURANT_URL } from "../utils/constants";
 
 const RestaurantList = () => {
-  const [restaurantList, setRestaurantList] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetchData();
-  },[])
+    fetchRestaurants();
+  }, []);
 
-  const fetchData = async () => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.4375084&lng=78.4482441&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-    const json = await data.json();
-     //console.log(json);
-     const restaurantsArray =
-     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants;
-    // console.log(restaurantsArray);
-     setRestaurantList(restaurantsArray);
-     setFilteredRestaurants(restaurantsArray);
-  }
-  //console.log(filteredRestaurants);
+  const fetchRestaurants = async () => {
+    
+      const data = await fetch(RESTAURANT_URL);
+      const json = await data.json();
+      const restaurantsArray =
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          .restaurants;
+      setRestaurants(restaurantsArray);
+      setFilteredRestaurants(restaurantsArray);
+    
+  };
 
-  return restaurantList.length === 0 ? (
+  return restaurants.length === 0 ? (
     <h1>loading...</h1>
   ) : (
     <>
      <div className="search-top">
      <div className="button">
       <button className="btn" onClick={() => {
-        const filteredList = restaurantList.filter((res) => {
+        const filteredList = restaurants.filter((res) => {
               return res.info.avgRating > 4.3;
             });
             setFilteredRestaurants(filteredList);
@@ -43,13 +45,13 @@ const RestaurantList = () => {
       <div className="search">
       <input type="text" value = {searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search Your Restaurant"/>
       <button className="search-btn" onClick={() => {
-            const filteredList = restaurantList.filter((res) => {
-              console.log(res)
+            const filteredList = restaurants.filter((res) => {
+             // console.log(res)
               return res.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
             });
             //console.log(res.info.name)
             setFilteredRestaurants(filteredList);
-            console.log(filteredList)
+            //console.log(filteredList)
           }}>Search</button>
     </div>
      </div>
@@ -61,6 +63,6 @@ const RestaurantList = () => {
      </div>
     </>
   )
-  }
+};
 
 export default RestaurantList;
