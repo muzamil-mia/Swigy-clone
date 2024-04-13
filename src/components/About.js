@@ -10,13 +10,13 @@ class About extends Component {
     console.log(props);
     super(props);
 
-    console.log("parent constructor");
+   // console.log("parent constructor");
   }
   componentDidMount() {
-    console.log("parent component did mount");
+    //console.log("parent component did mount");
   }
   render() {
-    console.log("parent render");
+    //console.log("parent render");
     return (
       <div className="about">
         <h1>About class Component</h1>

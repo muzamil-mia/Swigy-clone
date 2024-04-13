@@ -31,9 +31,9 @@ class UserClass extends Component {
       console.log("hello");
     },1000)
     // console.log("child component didMount called");
-    const data = await fetch("https://api.github.com/users");
+    const data = await fetch("https://api.github.com/users/muzamil-mia");
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
     
     
     this.setState({
