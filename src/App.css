@@ -1,0 +1,335 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.header {
+  /* border: 2px solid; */
+  width: 100%;
+  height: 100px;
+  display: flex;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
+}
+.nav {
+  width: 96%;
+  /* border: 2px solid; */
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+  /* box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1); */
+}
+.left-nav {
+  /* min-width: 350px; */
+  /* border: 2px solid; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.left-nav > a > svg {
+  /* border: 2px solid; */
+  height: 80px;
+  width: auto;
+}
+.left-nav > a > svg:hover {
+  height: 90px;
+  cursor: pointer;
+}
+.location > span:first-child {
+  text-decoration: underline;
+  font-size: 24px;
+  font-weight: 600;
+  font-style: normal;
+  padding: 0px 10px;
+}
+.location > span:first-child:hover {
+  color: coral;
+  cursor: pointer;
+}
+.location > span:last-child {
+  font-size: 20px;
+  font-style: normal;
+  color: #686b78;
+}
+.location > span:last-child:hover {
+  cursor: pointer;
+  color: chocolate;
+}
+.right-nav {
+  /* border: 2px solid; */
+  display: flex;
+  align-items: center;
+  /* width: 450px; */
+  width: 400px;
+  justify-content: space-between;
+}
+
+.user-icon {
+  font-size: 28px;
+}
+.cart-icon {
+  font-size: 28px;
+}
+.cart {
+  /* border: 2px solid; */
+  position: relative;
+}
+.cart-items {
+  position: absolute;
+  background-color: coral;
+  color: white;
+  padding: 1px 4px;
+  border-radius: 54%;
+  /* border: 2px solid; */
+  top: 0px;
+  left: 28px;
+}
+
+@media (max-width: 1000px) {
+  .links {
+    display: none;
+  }
+  .right-nav {
+    justify-content: end;
+  }
+}
+.links > ul {
+  /* border: 2px solid; */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.links > ul > li {
+  /* border: 2px solid; */
+  padding: 5px 25px;
+  /* width: 120px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.links > ul > li > a {
+  text-decoration: none;
+  font-size: 22px;
+  font-style: normal;
+  color: black;
+}
+.cart-user > ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-icon {
+  /* border: 2px solid; */
+  font-size: 32px;
+  display: inline-block;
+  margin-right: 2px;
+  padding: 2px;
+}
+.signin-link {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  text-decoration: none; /* Remove default underline */
+  color: black;
+}
+.signin-text {
+  font-size: 22px;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  color: #686b78;
+}
+
+.cart-user {
+  /* border: 2px solid; */
+  width: 180px;
+  padding-inline: 4px;
+  padding: 5px 4px;
+}
+
+ul > li > a:hover {
+  color: coral;
+  cursor: pointer;
+}
+
+.filter-top {
+  /* border: 2px solid red; */
+}
+.search-top {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px auto;
+  max-width: 650px;
+}
+
+.btn {
+  display: block;
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-size: 20px;
+  color: white;
+  font-weight: bolder;
+  background-color: rgb(127, 202, 14);
+  border: none;
+  box-shadow: #686b78;
+  /* border: 2px solid red; */
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(100, 160, 9);
+  transition: all 1s;
+}
+
+.search {
+  /* border: 2px solid green; */
+}
+.search-button > input {
+  padding: 12px 20px;
+  font-size: 20px;
+  border: 1px solid;
+  border-right: none;
+  /* border: 2px solid green; */
+}
+.search-btn {
+  padding: 14px 20px;
+  font-size: 20px;
+  border-left: none;
+  font-weight: bolder;
+  background-color: coral;
+  color: white;
+  border-radius: 0 5px 0 0;
+  border: none;
+}
+.search-btn:hover {
+  transition: all 1s;
+  cursor: pointer;
+  background-color: rgb(241, 104, 54);
+}
+.search > input:focus {
+  outline: none;
+}
+@media (max-width: 824px) {
+  .search-top {
+    flex-direction: column;
+  }
+  .btn {
+    width: 260px;
+    display: block;
+    margin: 4px auto;
+  }
+  .search-button {
+    width: 380px;
+    margin: 2px auto;
+  }
+}
+
+.restaurant-cards {
+  /* border: 2px solid; */
+  width: 95%;
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  column-gap: 20px;
+  row-gap: 20px;
+}
+.restaurant-cards > a {
+  text-decoration: none;
+}
+
+.card {
+  /* border: 2px solid;
+  width: 100%;
+  max-width: 340px; */
+  display: flex;
+  flex-direction: column;
+  width: 320px; /* Adjust width as needed */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  height: 380px;
+}
+.image > img {
+  width: 100%;
+  height: 210px; /* Adjust height as needed */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.image:hover {
+  transform: scale(0.9);
+  cursor: pointer;
+}
+.info {
+  /* border: 2px solid; */
+  padding: 10px;
+  min-height: 150px;
+  margin-top: 0px;
+}
+.info:hover {
+  cursor: pointer;
+}
+.info h2 {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding-bottom: 4px;
+  line-height: 24px;
+  font-weight: 700;
+  color: rgba(2, 6, 12, 0.75);
+}
+.info > p span {
+  font-size: 18px;
+  font-weight: bolder;
+  padding-right: 10px;
+  color: rgba(2, 6, 12, 0.75);
+  line-height: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.info > p:last-child {
+  font-size: 18px;
+  color: rgba(2, 6, 12, 0.6);
+  font-weight: 200;
+  line-height: 19px;
+  margin-top: 5px;
+}
+.about {
+  border: 2px solid;
+  padding: 5px;
+  width: 300px;
+}
+.help {
+}
+.help > a {
+  text-align: center;
+  display: block;
+  position: absolute;
+  position: fixed;
+  border: 2px solid;
+  padding: 10px 20px;
+  font-size: 22px;
+  top: 800px;
+  right: 25px;
+  width: 150px;
+  border-radius: 10px;
+  font-size: 22px;
+  font: bolder;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: coral;
+  box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;
+  border: none;
+  letter-spacing: 1.8px;
+}
+.help>a>button{
+  font-size: 25px;
+  color: white;
+}
+.help > a:hover{
+  background-color: #686b78;
+  color: white;
+  transition: ease .5s;
+}

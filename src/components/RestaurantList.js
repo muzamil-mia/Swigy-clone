@@ -18,51 +18,70 @@ const RestaurantList = () => {
   }, []);
 
   const fetchRestaurants = async () => {
-    
-      const data = await fetch(RESTAURANT_URL);
-      const json = await data.json();
-      const restaurantsArray =
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-          .restaurants;
-      setRestaurants(restaurantsArray);
-      setFilteredRestaurants(restaurantsArray);
-    
+    const data = await fetch(RESTAURANT_URL);
+    const json = await data.json();
+    const restaurantsArray =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants;
+    setRestaurants(restaurantsArray);
+    setFilteredRestaurants(restaurantsArray);
   };
 
   return restaurants.length === 0 ? (
     <h1>loading...</h1>
   ) : (
     <>
-     <div className="search-top">
-     <div className="button">
-      <button className="btn" onClick={() => {
-        const filteredList = restaurants.filter((res) => {
-              return res.info.avgRating > 4.3;
-            });
-            setFilteredRestaurants(filteredList);
-      }}>Top Restaurants</button>
+      <div className="search-top">
+          <button
+            className="btn"
+            onClick={() => {
+              const filteredList = restaurants.filter((res) => {
+                return res.info.avgRating > 4.3;
+              });
+              setFilteredRestaurants(filteredList);
+            }}
+          >
+            Top Restaurants
+          </button>
+        <div className="search">
+          <div className="search-button">
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Search Your Restaurant"
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredList = restaurants.filter((res) => {
+                // console.log(res)
+                return res.info.name
+                  .toLocaleLowerCase()
+                  .includes(searchText.toLocaleLowerCase());
+              });
+              //console.log(res.info.name)
+              setFilteredRestaurants(filteredList);
+              //console.log(filteredList)
+            }}
+          >
+            Search
+          </button>
+          </div>
+        </div>
       </div>
-      <div className="search">
-      <input type="text" value = {searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search Your Restaurant"/>
-      <button className="search-btn" onClick={() => {
-            const filteredList = restaurants.filter((res) => {
-             // console.log(res)
-              return res.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
-            });
-            //console.log(res.info.name)
-            setFilteredRestaurants(filteredList);
-            //console.log(filteredList)
-          }}>Search</button>
-    </div>
-     </div>
-     <div className="restaurant-cards">
-     {filteredRestaurants.map((res) => (
-        // console.log(res.info.id)
-        <Link key={res.info.id} to={"/restaurants/" + res.info.id}><RestaurantCard resData={res.info} /></Link>
+      <div className="restaurant-cards">
+        {filteredRestaurants.map((res) => (
+          // console.log(res.info.id)
+          <Link key={res.info.id} to={"/restaurants/" + res.info.id}>
+            <RestaurantCard resData={res.info} />
+          </Link>
         ))}
-     </div>
+      </div>
+      <div className="help">
+        <Link to = "/help"><button>Help</button></Link>
+      </div>
     </>
-  )
+  );
 };
 
 export default RestaurantList;

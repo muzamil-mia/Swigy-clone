@@ -7,7 +7,7 @@ class UserClass extends Component {
   constructor(props) {
     super(props);
     // console.log(props);
-    //console.log("child constructor");
+    console.log("child constructor");
 
     //we can create a state variable also here there was no useState before functional component
     this.state = {
@@ -22,15 +22,15 @@ class UserClass extends Component {
      }
     };
   }
-  // componentDidMount() {
-  //   console.log("child component did mount");
-  // }
+  componentDidMount() {
+    console.log("child component did mount");
+  }
 
   async componentDidMount() {
     this.timer = setInterval(() =>{
       console.log("hello");
     },1000)
-    // console.log("child component didMount called");
+     console.log("child component didMount called");
     const data = await fetch("https://api.github.com/users/muzamil-mia");
     const json = await data.json();
     //console.log(json);
@@ -65,7 +65,7 @@ class UserClass extends Component {
   //with the help of extends keyword our class behaves as a component which comes form React
   //class based component has a render method which returns some jsx
   render() {
-   // console.log("child render");
+    console.log("child render");
     // const { name, location } = this.props;
     // const { count, count2 } = this.state;
     const {name, location, avatar_url} = this.state.userInfo;
